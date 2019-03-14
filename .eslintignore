@@ -1,0 +1,6 @@
+!.eslintrc.js
+.next/
+.vscode/
+.idea/
+.git/
+node_modules

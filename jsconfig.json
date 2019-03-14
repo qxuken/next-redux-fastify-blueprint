@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "backend-folder/*": ["backend/*"],
+      "pages-folder/*": ["pages/*"],
+      "components-folder/*": ["src/components/*"],
+      "lib-folder/*": ["src/lib/*"],
+      "redux-folder/*": ["src/redux/*"],
+      "services-folder/*": ["src/services/*"],
+      "styles-folder/*": ["src/styles/*"],
+      "static-folder/*": ["static/*"],
+      "utils-folder/*": ["utils/*"],
+    }
+  }
+}

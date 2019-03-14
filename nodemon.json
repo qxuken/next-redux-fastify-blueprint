@@ -1,0 +1,26 @@
+{
+  "restartable": "rs",
+  "signal": "SIGHUP",
+  "ignore": [
+    ".git",
+    ".vscode",
+    ".atom",
+    "node_modules/**/node_modules",
+    ".idea",
+    ".next",
+    "storybook_build"
+  ],
+  "delay": 500,
+  "verbose": true,
+  "watch": [
+    "backend/**",
+    "next.config.js",
+    "postcss.config.js",
+    "./src/redux/**/*.js",
+    "nodemon.json",
+    "package.json",
+    ".babelrc",
+    ".env"
+  ],
+  "ext": "js json"
+}

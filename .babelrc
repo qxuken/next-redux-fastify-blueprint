@@ -1,0 +1,44 @@
+{
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose" : true }],
+    "@babel/plugin-proposal-do-expressions",
+    "react-html-attrs",
+    ["transform-imports", {
+      "lodash": {
+        "transform": "lodash/${member}",
+        "preventFullImport": true
+      },
+      "@material-ui/icons": {
+        "transform": "@material-ui/icons/${member}",
+        "preventFullImport": true
+      },
+      "@material-ui/core": {
+        "transform": "@material-ui/core/${member}",
+        "preventFullImport": true
+      }
+    }],
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "backend-folder": "./backend",
+          "pages-folder": "./pages",
+          "components-folder": "./src/components",
+          "lib-folder": "./src/lib",
+          "redux-folder": "./src/redux",
+          "services-folder": "./src/services",
+          "styles-folder": "./src/styles",
+          "static-folder": "./static",
+          "utils-folder": "./utils"
+        }
+      }
+    ],
+    "inline-dotenv",
+    "transform-inline-environment-variables"
+  ]
+}

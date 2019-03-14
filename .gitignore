@@ -1,0 +1,14 @@
+# generatable directories
+/node_modules
+/.next
+/build
+/.idea
+/.vscode
+/.atom
+package-lock.json
+
+# protected file
+.env
+dump.rdb
+
+/**/*.DS_Store

@@ -1,0 +1,26 @@
+* {
+  font-family: 'Roboto';
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.hidden{
+  display: none;
+}
+
+.flex {
+  display: flex;
+  &.space-between {
+    justify-content: space-between;
+  }
+  &.space-evenly {
+    justify-content: space-evenly;
+  }
+}
