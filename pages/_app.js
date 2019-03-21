@@ -3,22 +3,24 @@ import { get } from 'lodash';
 import { Provider } from 'react-redux';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
-import getPageContext from 'lib-folder/getPageContext';
-import { Logo } from 'components-folder/shared/Icons';
+import getPageContext from 'lib/getPageContext';
+import { Logo } from 'components/shared/Icons';
 
-import withReduxStore from 'lib-folder/withReduxStore';
-import { actions as systemActions } from 'redux-folder/ducks/system';
-import { storeName as authorizationStoreName } from 'redux-folder/ducks/authorization';
+import withReduxStore from 'lib/withReduxStore';
+import { actions as systemActions } from 'redux/ducks/system';
+import { storeName as authorizationStoreName } from 'redux/ducks/authorization';
 
-import ServiceComponent from 'components-folder/ServiceComponent';
+import ServiceComponent from 'components/ServiceComponent';
 
-import 'styles-folder/main.scss';
+import 'styles/main.scss';
 
 @withReduxStore
 class MainEntry extends App {
   static async getInitialProps({ Component, ctx }) {
     const { reduxStore } = ctx;
-    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+    const pageProps = Component.getInitialProps
+      ? await Component.getInitialProps(ctx)
+      : {};
     return { reduxStore, pageProps };
   }
 
@@ -42,21 +44,25 @@ class MainEntry extends App {
     if (loading)
       return (
         <Container>
-          <div class="loader">
+          <div className="loader">
             <Logo />
           </div>
         </Container>
       );
     return (
       <Container>
-        <div class="loader">
+        <div className="loader">
           <Logo />
         </div>
         <Provider store={reduxStore}>
-            <Fragment>
-              <Component pageContext={this.pageContext} {...appProps} {...pageProps} />
-              <ServiceComponent />
-            </Fragment>
+          <Fragment>
+            <Component
+              pageContext={this.pageContext}
+              {...appProps}
+              {...pageProps}
+            />
+            <ServiceComponent />
+          </Fragment>
         </Provider>
       </Container>
     );

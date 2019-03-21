@@ -77,7 +77,10 @@ export function reducer(state = initialState, action = {}) {
 export const actions = {
   initLayout: () => async (dispatch, gState) => {
     const savedValues = {
-      miniActive: localStorage.getItem('miniActive') === 'true' ? true : initialState.miniActive,
+      miniActive:
+        localStorage.getItem('miniActive') === 'true'
+          ? true
+          : initialState.miniActive,
     };
     await dispatch({ type: INIT_LAYOUT, payload: savedValues });
     return true;

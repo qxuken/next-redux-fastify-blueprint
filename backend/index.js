@@ -30,39 +30,43 @@ if (frontEnv !== 'production') {
   fastify.register(require('fastify-metrics'), { endpoint: '/metrics' });
 }
 
-fastify.register(require('fastify-healthcheck')).register((fastify, opts, next) => {
-  const app = Next({ dev });
-  app
-    .prepare()
-    .then(() => {
-      fastify.get('/_next/*', (req, reply) =>
-        app.handleRequest(req.req, reply.res).then(() => {
-          reply.sent = true;
-        }),
-      );
+fastify
+  .register(require('fastify-healthcheck'))
+  .register((fastify, opts, next) => {
+    const app = Next({ dev });
+    app
+      .prepare()
+      .then(() => {
+        fastify.get('/_next/*', function(req, reply) {
+          app.handleRequest(req.req, reply.res).then(function() {
+            reply.sent = true;
+          });
+        });
 
-      // fastify.get('/custom_route/:id', (req, reply) =>
-      //   app.render(req.req, reply.res, '/next_js_route/', { id: req.params.id }).then(() => {
-      //     reply.sent = true;
-      //   }),
-      // );
+        // fastify.get('/custom_route/:id', (req, reply) =>
+        //   app.render(req.req, reply.res, '/next_js_route/', { id: req.params.id }).then(() => {
+        //     reply.sent = true;
+        //   }),
+        // );
 
-      fastify.get('/*', (req, reply) =>
-        app.handleRequest(req.req, reply.res).then(() => {
-          reply.sent = true;
-        }),
-      );
+        fastify.get('/*', function(req, reply) {
+          app.handleRequest(req.req, reply.res).then(function() {
+            reply.sent = true;
+          });
+        });
 
-      fastify.setNotFoundHandler((request, reply) =>
-        app.render404(request.req, reply.res).then(() => {
-          reply.sent = true;
-        }),
-      );
+        fastify.setNotFoundHandler(function(request, reply) {
+          app.render404(request.req, reply.res).then(function() {
+            reply.sent = true;
+          });
+        });
 
-      next();
-    })
-    .catch(err => next(err));
-});
+        next();
+      })
+      .catch(function(err) {
+        return next(err);
+      });
+  });
 
 fastify.listen(port, address, err => {
   if (err) throw err;

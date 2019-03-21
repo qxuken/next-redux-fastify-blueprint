@@ -1,5 +1,4 @@
 import { actionTemplate } from './constants';
-import { actions as authorizationActions } from './authorization';
 import { actions as layoutActions } from './layout';
 
 // REDUX STORENAME
@@ -40,7 +39,6 @@ export const actions = {
   sendInitFromServer: () => ({ type: SERVER_INIT }),
   sendInitFromClient: () => async (dispatch, gState) => {
     await dispatch({ type: CLIENT_INIT });
-    await dispatch(authorizationActions.renewAuthorization());
     await dispatch(layoutActions.initLayout());
     window.gCss.setVariable('loaderDisplay', 'none');
     return true;

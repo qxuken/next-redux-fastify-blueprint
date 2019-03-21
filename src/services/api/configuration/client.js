@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { get } from 'lodash';
+import { set, unset } from 'lodash';
 import Router from 'next/router';
 
 export class XhrClient {
@@ -13,17 +13,10 @@ export class XhrClient {
     });
 
     const interceptorsConfiguration = [
-      config => config,
-      error => {
-        switch (get(error, 'response.status', 200)) {
-          case 401:
-            if (!['/signin', '/signup'].includes(window.location.pathname))
-              Router.replace('/auth/signin', '/signin');
-            break;
-          case 403:
-            Router.push('/');
-            break;
-        }
+      function(config) {
+        return config;
+      },
+      function(error) {
         return Promise.reject(error);
       },
     ];
@@ -32,13 +25,18 @@ export class XhrClient {
 
     if (process.env.FRONT_ENV === 'development') {
       try {
-        window.XhrClient = this.client;
+        window._XHR_CLIENT_DEBUG_ = this;
+        window._NEXT_ROUTER_DEBUG_ = Router;
       } catch (e) {}
     }
   }
 
-  setCSRF(token) {
-    this.client.defaults.headers.common['X-Csrf-Token'] = token;
+  setHeader(header, value) {
+    set(this.client, `defaults.headers.common['${header}']`, value);
+  }
+
+  releaseHeader(header) {
+    unset(this.client, `defaults.headers.common['${header}']`);
   }
 
   get(path, params) {

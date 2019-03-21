@@ -4,7 +4,6 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: 'airbnb',
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -17,10 +16,24 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', 'prettier', 'import', 'jsx-a11y', 'no-loops'],
-  extends: ['prettier', 'plugin:jsx-a11y/strict'],
+  plugins: [
+    'react',
+    'react-hooks',
+    'prettier',
+    'import',
+    'jsx-a11y',
+    'no-loops',
+  ],
+  extends: [
+    'airbnb',
+    'prettier',
+    'plugin:jsx-a11y/strict',
+    'eslint:recommended',
+  ],
   rules: {
     'prettier/prettier': 'error',
     'no-loops/no-loops': 2,
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 };

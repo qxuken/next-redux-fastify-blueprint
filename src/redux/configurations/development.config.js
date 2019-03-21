@@ -6,7 +6,10 @@ import {
   composeMiddlewares,
   createReduxStore,
 } from './common.modules';
-import { middlewares as clientMiddlewares, injector as clientInjector } from './client.modules';
+import {
+  middlewares as clientMiddlewares,
+  injector as clientInjector,
+} from './client.modules';
 
 export function initializeStore(initialState) {
   const logger = createLogger({ collapsed: true, duration: true, diff: true });

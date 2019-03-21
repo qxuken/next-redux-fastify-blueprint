@@ -1,5 +1,6 @@
 {
- "name": "App",
+ "name": "next-redux-fastify-blueprint",
+ "short_name": "app blueprint",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",

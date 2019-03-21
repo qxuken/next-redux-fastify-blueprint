@@ -3,7 +3,8 @@ const env = process.env.FRONT_ENV;
 
 let initializeStore;
 if (isServer && env === 'development') {
-  initializeStore = require('./configurations/server.development.config.js').default;
+  initializeStore = require('./configurations/server.development.config.js')
+    .default;
 } else if (isServer) {
   initializeStore = require('./configurations/server.config.js').default;
 } else if (env === 'development') {

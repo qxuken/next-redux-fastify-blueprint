@@ -1,12 +1,14 @@
 import React from 'react';
-import Layout from './Component';
+import Layout from './Layout';
 
-function LayoutWrapper(WrappedComponent) {
-  return () => (
-    <Layout>
-      <WrappedComponent />
-    </Layout>
-  );
+function LayoutHOC(WrappedComponent) {
+  return function() {
+    return (
+      <Layout>
+        <WrappedComponent />
+      </Layout>
+    );
+  };
 }
 
-export default LayoutWrapper;
+export default LayoutHOC;

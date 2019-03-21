@@ -1,12 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 
-export default class ServiceComponent extends Component {
-  render() {
-    return (
-      <Fragment>
-        {/* Example: */}
-        {/* <Notifier />  */}
-      </Fragment>
-    );
-  }
+export default function ServiceComponent() {
+  return (
+    <>
+      {/* Example: */}
+      {/* <Notifier />  */}
+    </>
+  );
 }
