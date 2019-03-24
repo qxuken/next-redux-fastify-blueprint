@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { isUndefined } from 'lodash';
-import initializeStore from 'redux-folder';
+import initializeStore from 'store';
 
 const isServer = typeof window === 'undefined';
 const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__';

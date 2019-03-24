@@ -1,5 +1,5 @@
-import authorization from './authorization';
+// import authorization from './authorization';
 
 export default {
-  authorization,
+  // authorization,
 };

@@ -1,5 +1,5 @@
-import { actionTemplate } from './constants';
-import { actions as layoutActions } from './layout';
+import Console from 'services/Console';
+import { actionTemplate } from 'store/helpers/duckNamingTemplates';
 
 // REDUX STORENAME
 export const storeName = 'system';
@@ -13,7 +13,7 @@ const CLIENT_INIT = ACTION('CLIENT_INIT');
 
 // CONSTANTS
 const initialState = {
-  server: false,
+  isServer: true,
 };
 
 // REDUCER
@@ -22,12 +22,12 @@ export function reducer(state = initialState, action = {}) {
     case SERVER_INIT:
       return {
         ...initialState,
-        server: true,
+        isServer: true,
       };
     case CLIENT_INIT:
       return {
         ...initialState,
-        server: false,
+        isServer: false,
       };
     default:
       return state;
@@ -36,10 +36,15 @@ export function reducer(state = initialState, action = {}) {
 
 // ACTIONS
 export const actions = {
-  sendInitFromServer: () => ({ type: SERVER_INIT }),
-  sendInitFromClient: () => async (dispatch, gState) => {
+  sendInitFromServer: () => async (dispatch, gState) => {
+    if (gState()[storeName].isServer) {
+      await dispatch({ type: SERVER_INIT });
+    }
+    return true;
+  },
+  sendInitFromClient: () => async dispatch => {
+    Console.greeting();
     await dispatch({ type: CLIENT_INIT });
-    await dispatch(layoutActions.initLayout());
     window.gCss.setVariable('loaderDisplay', 'none');
     return true;
   },

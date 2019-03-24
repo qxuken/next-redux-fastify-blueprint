@@ -1,5 +1,3 @@
-import { isEmpty } from 'lodash';
-
 export function required(value) {
   return value ? undefined : 'Required';
 }
@@ -29,7 +27,7 @@ export function hasDigit(value) {
 }
 
 export function hasSpecialSymbol(value) {
-  return /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(value)
+  return /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value)
     ? undefined
     : 'The field should contain 1 symbol at minima.';
 }
@@ -46,7 +44,7 @@ export function jsonFormat(value) {
 
 export function website(value) {
   if (
-    !/@^(http\:\/\/|https\:\/\/)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*$@i/.test(
+    !/@^(http:\/\/|https:\/\/)?([a-z0-9][a-z0-9-]*\.)+[a-z0-9][a-z0-9-]*$@i/.test(
       value,
     ) &&
     value !== '' &&

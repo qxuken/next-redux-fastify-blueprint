@@ -3,7 +3,6 @@ import Document, { Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
   render() {
-    const { pageContext } = this.props;
     return (
       <html lang="en" dir="ltr">
         <Head>

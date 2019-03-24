@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { set, unset } from 'lodash';
 import Router from 'next/router';
+import Console from 'services/Console';
 
 export class XhrClient {
   constructor() {
@@ -27,7 +28,9 @@ export class XhrClient {
       try {
         window._XHR_CLIENT_DEBUG_ = this;
         window._NEXT_ROUTER_DEBUG_ = Router;
-      } catch (e) {}
+      } catch (e) {
+        Console.error(e);
+      }
     }
   }
 

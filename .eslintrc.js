@@ -1,3 +1,9 @@
+const babelModuleConfig = require('./.module-resolver.js');
+
+const OFF = 0;
+const WARN = 1;
+const ERROR = 2;
+
 module.exports = {
   env: {
     browser: true,
@@ -31,9 +37,18 @@ module.exports = {
     'eslint:recommended',
   ],
   rules: {
-    'prettier/prettier': 'error',
-    'no-loops/no-loops': 2,
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    'react/prop-types': OFF,
+    'import/no-named-as-default': OFF,
+    'react/jsx-filename-extension': OFF,
+    'prettier/prettier': ERROR,
+    'no-loops/no-loops': ERROR,
+    'react-hooks/rules-of-hooks': ERROR,
+    'react-hooks/exhaustive-deps': WARN,
+    'import/prefer-default-export': WARN,
+  },
+  settings: {
+    'import/resolver': {
+      'babel-module': babelModuleConfig,
+    },
   },
 };

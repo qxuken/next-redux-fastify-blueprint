@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Layout from 'components-folder/Layout';
+import Layout from 'components/Layout';
 
 @Layout
 class Index extends Component {
@@ -7,6 +7,7 @@ class Index extends Component {
     return (
       <Fragment>
         <h1>This this index page</h1>
+        <p>{process.env.FRONT_ENV}</p>
       </Fragment>
     );
   }

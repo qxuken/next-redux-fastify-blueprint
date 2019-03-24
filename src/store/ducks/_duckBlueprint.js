@@ -1,11 +1,12 @@
 // BLUEPRINT TO BUILD YOUR OWN DUCK
-// reducer, actions and epics are required to be exported
-// tip: bind actions to target components
+// reducer and actions are required to be exported
 
-import api from 'api-folder';
-import { toastr } from 'react-redux-toastr';
-import { reset } from 'redux-form';
-import { actionTemplate } from './constants';
+import api from 'services/api';
+import {
+  actionTemplate,
+  xhrActionTemplate,
+} from 'store/helpers/duckNamingTemplates';
+import xhrOperation from 'store/helpers/xhrOperation';
 
 // REDUX STORENAME
 export const storeName = '_duckBlueptint';
@@ -17,11 +18,7 @@ const ACTION = actionTemplate(storeName);
 // REDUX TYPES
 const INIT = ACTION('INIT');
 
-const LOAD_REQ = ACTION('LOAD_REQ');
-
-const LOAD_RES = ACTION('LOAD_RES');
-
-const LOAD_FAIL = ACTION('LOAD_FAIL');
+const LOAD = xhrActionTemplate('LOAD');
 
 const CHANGE_TAB = ACTION('CHANGE_TAB');
 const SHOW_CREATE_FORM = ACTION('SHOW_CREATE_FORM');
@@ -47,7 +44,8 @@ const initialState = {
     items: TABS,
     current: TABS[0].id,
   },
-  loading: false,
+  items: [],
+  loading: 0,
 };
 
 // REDUCER
@@ -56,10 +54,19 @@ export function reducer(state = initialState, action = {}) {
     case INIT:
       return {
         ...initialState,
-        loading: true,
       };
-    case LOAD_RES:
+    case LOAD.REQ:
+      return {
+        ...state,
+        loading: state.loading + 1,
+      };
+    case LOAD.RES:
       return loadResp(...arguments);
+    case LOAD.FAIL:
+      return {
+        ...state,
+        loading: state.loading - 1,
+      };
     default:
       return state;
   }
@@ -70,29 +77,24 @@ export const actions = {
   // initiate topics on page load
   init: () => async dispatch => {
     await dispatch({ type: INIT });
+    dispatch(actions.load());
   },
   // load actions
-  load: params => async dispatch => {
-    dispatch({ type: LOAD_REQ });
-
-    try {
-      const res = await api.something.all(params);
-      dispatch({ type: LOAD_RES, payload: res.data });
-    } catch (e) {
-      toastr.error('Не удалось загрузить данные с сервера');
-      dispatch({ type: LOAD_FAIL, payload: e });
-    }
-  },
+  load: xhrOperation(LOAD, api.something.all),
   // specific actions
   changeTab: ({ id }) => ({ type: CHANGE_TAB, payload: { id } }),
   // form events
   // some logic here
-  submitForm: async (values, dispatch, props) => ({ someData: 'onComplete' }),
+  submitForm: async values => ({ someData: 'onComplete', values }),
   // show something
   showCreateForm: () => ({ type: SHOW_CREATE_FORM }),
 };
 
 // SUPPORT FUNCTIONS
 function loadResp(state, { payload }) {
-  return { ...state };
+  return {
+    ...state,
+    items: payload,
+    loading: state.loading - 1,
+  };
 }

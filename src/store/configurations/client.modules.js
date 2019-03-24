@@ -1,7 +1,7 @@
 import { set } from 'lodash';
 import reduxCSS from 'redux-css';
 
-import styleReducer from 'redux-folder/reducers/styleReducer';
+import styleReducer from 'store/reducers/styleReducer';
 
 const { middleware: cssMiddleware, ...css } = reduxCSS(styleReducer);
 

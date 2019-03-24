@@ -6,6 +6,8 @@
 /.vscode
 /.atom
 package-lock.json
+package-error.log
+yarn-error.log
 
 # protected file
 .env

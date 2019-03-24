@@ -1,7 +1,7 @@
 import XhrClient from 'services/api/configuration/client';
 
 export default ({ path, model }) => ({
-  fetchAll: params => XhrClient.get(path, { params: { ...params } }),
+  all: params => XhrClient.get(path, { params: { ...params } }),
   show: ({ id }) => XhrClient.get(`${path}/${id}`),
   create: ({ ...fields }) => XhrClient.post(path, { [model]: { ...fields } }),
   update: ({ id, ...fields }) =>

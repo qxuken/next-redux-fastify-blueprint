@@ -19,7 +19,8 @@
     "./src/redux/**/*.js",
     "nodemon.json",
     "package.json",
-    ".babelrc",
+    ".babelrc.js",
+    ".module-resolver.js",
     ".env"
   ],
   "ext": "js json"
