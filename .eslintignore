@@ -1,0 +1,8 @@
+!.eslintrc.js
+!.babelrc.js
+!.module-resolver.js
+.next/
+.vscode/
+.idea/
+.git/
+node_modules

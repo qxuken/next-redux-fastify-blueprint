@@ -1,0 +1,22 @@
+%container {
+  width: 100%;
+  margin: auto;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body {
+  @extend %container;
+}
+
+.main-container {
+  @extend %container;
+  max-width: var(--mainContainerMaxWidth);
+}
+
+.sticky-container {
+  @extend %container;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
