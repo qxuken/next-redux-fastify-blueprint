@@ -4,7 +4,7 @@ Concepts:
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/qxuken/next-redux-fastify-blueprint/compare/master...develop)
-
+### Added
 - Basic folder structure
 - ESlint
 - Dockerfile

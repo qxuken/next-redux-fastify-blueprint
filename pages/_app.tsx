@@ -48,11 +48,7 @@ class MainEntry extends App {
         <Loader />
         <Provider store={reduxStore}>
           <Fragment>
-            <Component
-              pageContext={this.pageContext}
-              {...appProps}
-              {...pageProps}
-            />
+            <Component {...appProps} {...pageProps} />
             <ServiceComponent />
           </Fragment>
         </Provider>

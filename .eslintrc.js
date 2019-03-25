@@ -14,15 +14,17 @@ module.exports = {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
+      project: './tsconfig.json',
     },
     ecmaVersion: 2018,
     sourceType: 'module',
   },
   plugins: [
+    '@typescript-eslint',
     'react',
     'react-hooks',
     'prettier',
@@ -31,8 +33,11 @@ module.exports = {
     'no-loops',
   ],
   extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
     'airbnb',
-    'prettier',
     'plugin:jsx-a11y/strict',
     'eslint:recommended',
   ],
@@ -40,15 +45,20 @@ module.exports = {
     'react/prop-types': OFF,
     'import/no-named-as-default': OFF,
     'react/jsx-filename-extension': OFF,
+    '@typescript-eslint/no-var-requires': OFF,
+    '@typescript-eslint/no-use-before-define': OFF,
+    'react-hooks/exhaustive-deps': WARN,
+    'import/prefer-default-export': WARN,
     'prettier/prettier': ERROR,
     'no-loops/no-loops': ERROR,
     'react-hooks/rules-of-hooks': ERROR,
-    'react-hooks/exhaustive-deps': WARN,
-    'import/prefer-default-export': WARN,
   },
   settings: {
     'import/resolver': {
       'babel-module': babelModuleConfig,
+    },
+    react: {
+      version: 'detect',
     },
   },
 };

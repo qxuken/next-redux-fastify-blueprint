@@ -1,14 +1,5 @@
 import React from 'react';
-import Layout from './Layout';
 
-function LayoutHOC(WrappedComponent) {
-  return function() {
-    return (
-      <Layout>
-        <WrappedComponent />
-      </Layout>
-    );
-  };
+export default function Layout({ children }) {
+  return <div>{children}</div>;
 }
-
-export default LayoutHOC;

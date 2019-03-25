@@ -11,15 +11,15 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint -c ./.eslintrc.js --ext .js,.jsx --fix",
+      "eslint -c ./.eslintrc.js --ext .js,.jsx,.ts,.tsx --fix",
       "git add -A"
     ]
   },
   "scripts": {
     "dev": "NODE_ENV=development nodemon --max_old_space_size=4096 ./backend/index.js",
-    "prettier": "prettier --config ./.prettierrc  --write './{pages,backend,src,utils}/**/*.{js,jsx}'",
-    "lint": "eslint -c ./.eslintrc.js --ext .js,.jsx .",
-    "lint:write": "eslint -c ./.eslintrc.js --ext .js,.jsx --fix .",
+    "prettier": "prettier --config ./.prettierrc  --write './{pages,backend,src,utils}/**/*.{js,jsx,ts,tsx}'",
+    "lint": "eslint -c ./.eslintrc.js --ext .js,.jsx,.ts,.tsx .",
+    "lint:write": "eslint -c ./.eslintrc.js --ext .js,.jsx,.ts,.tsx --fix .",
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production node ./backend/index.js",
     "build-n-start": "yarn build && yarn start"
@@ -28,7 +28,15 @@
     "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-proposal-decorators": "^7.1.6",
     "@babel/plugin-proposal-do-expressions": "^7.0.0",
+    "@types/lodash": "^4.14.123",
+    "@types/next": "^8.0.3",
+    "@types/node": "^11.11.6",
+    "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.3",
+    "@types/react-redux": "^7.0.5",
+    "@types/redux": "^3.6.0",
     "@zeit/next-sass": "^1.0.1",
+    "@zeit/next-typescript": "^1.1.1",
     "autoprefixer": "^9.4.10",
     "axios": "^0.18.0",
     "babel-plugin-inline-dotenv": "^1.2.0",
@@ -67,11 +75,13 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "styled-jsx": "^3.2.1",
+    "typescript": "^3.3.4000",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@babel/parser": "^7.3.4",
-    "babel-eslint": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "^1.5.0",
+    "@typescript-eslint/parser": "^1.5.0",
+    "@typescript-eslint/typescript-estree": "^1.5.0",
     "eslint": "^5.15.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.1.0",
